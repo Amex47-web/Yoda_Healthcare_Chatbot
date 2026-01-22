@@ -11,11 +11,11 @@ The system uses a strict pipeline to ensure character consistency and grammatica
 ```mermaid
 graph TD
     User[User Query] -->|POST /chat| API[FastAPI Backend]
-    API -->|Prompting| LLM[Groq API (Llama 3)]
+    API -->|Prompting| LLM["Groq API (Llama 3)"]
     LLM -->|Raw Wisdom| Persona[Jedi Persona Logic]
     Persona -->|Text| Transformer[spaCy OSV Transformer]
     Transformer -->|Inverted Grammar| Response[Final Response]
-    Response -->|JSON| UI[Next.js Chat UI]
+    Response -->|JSON| UI["Next.js Chat UI"]
 ```
 
 ## 🛠 Tech Stack
