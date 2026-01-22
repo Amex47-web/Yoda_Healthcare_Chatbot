@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #e0e0e0;
+  --holo-blue: #00e5ff;
+  --holo-green: #00ff41;
+  --tech-grid: rgba(0, 229, 255, 0.1);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+}
+
+/* Starfield Background - Level 0 */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background:
+    radial-gradient(1px 1px at 10% 10%, white 1px, transparent 0),
+    radial-gradient(1px 1px at 20% 20%, white 1px, transparent 0),
+    radial-gradient(2px 2px at 30% 30%, white 1px, transparent 0),
+    radial-gradient(1px 1px at 40% 40%, white 1px, transparent 0),
+    radial-gradient(2px 2px at 50% 50%, white 1px, transparent 0);
+  background-size: 550px 550px;
+  animation: twinkle 8s linear infinite;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-550px);
+  }
+}
+
+/* Falcon Schematic Styling - Level 1 */
+.falcon-bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85vw;
+  /* Slightly smaller to fit better */
+  max-width: 900px;
+  opacity: 0.2;
+  /* Increased visibility slightly */
+  pointer-events: none;
+  z-index: 1;
+  filter: sepia(100%) hue-rotate(150deg) saturate(300%) contrast(1.2);
+  animation: float-falcon 20s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes float-falcon {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -52%) scale(1.02);
+  }
+}
+
+/* Scanlines - Level 2 (Below Content) */
+.scanline {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2));
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.15;
+}
+
+.scan-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 229, 255, 0.4);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+  animation: scan 8s linear infinite;
+  z-index: 2;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.6;
+  }
+
+  90% {
+    opacity: 0.6;
+  }
+
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
+
+/* Content will be z-index 10+ */
+
+/* Holographic UI Elements */
+.holo-border {
+  border: 1px solid var(--holo-blue);
+  box-shadow: 0 0 10px var(--tech-grid), inset 0 0 5px var(--tech-grid);
+}
+
+.holo-text {
+  color: var(--holo-blue);
+  text-shadow: 0 0 5px var(--holo-blue);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050510;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--holo-blue);
+  border-radius: 2px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.force-pulse {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 255, 65, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+  }
+
+  100% {
+    box-shadow: 0 0 5px rgba(0, 255, 65, 0.2);
+  }
+}
